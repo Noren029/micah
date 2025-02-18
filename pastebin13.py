@@ -12,7 +12,7 @@ def create_pastebin_paste(title, content):
         "api_paste_name": title,
         "api_paste_code": content,
         "api_paste_private": "1",  # 1 = unlisted, 2 = private
-        "api_paste_expire_date": "10M",  # Expires in 10 minutes
+        "api_paste_expire_date": "1M",  # Expires in 1 month
     }
     response = requests.post(PASTEBIN_API_URL, data=data)
     
