@@ -17,8 +17,8 @@ def main():
     ent_name.grid(row=0, column=1)
 
     def handle_btn_get_info():
-        pokemon = ent_name.get()
-        poke_info = get_pokemon_info(pokemon)
+        poke_name = ent_name.get()
+        poke_info = get_pokemon_info(poke_name)
         if poke_info:
             # Display Info
             lbl_height_val['text'] = str(poke_info['height']) + ' dm'
@@ -27,14 +27,14 @@ def main():
             lbl_type_val["text"] = ", ".join(types)
 
             # Display Stats
-            bar_hp['value'] = poke_info['stats'].get('hp', 0)
-            bar_attack['value'] = poke_info['stats'].get('attack', 0)
-            bar_defense['value'] = poke_info['stats'].get('defense', 0)
-            bar_Special_Attack['value'] = poke_info['stats'].get('special-attack', 0)
-            bar_Special_Defense['value'] = poke_info['stats'].get('special-defense', 0)
-            bar_Speed['value'] = poke_info['stats'].get('speed', 0)
+            bar_hp['value'] = poke_info['stats'][0]['base_stat']
+            bar_attack['value'] = poke_info['stats'][1]['base_stat']
+            bar_defense['value'] = poke_info['stats'][2]['base_stat']
+            bar_Special_Attack['value'] = poke_info['stats'][3]['base_stat']
+            bar_Special_Defense['value'] = poke_info['stats'][4]['base_stat']
+            bar_Speed['value'] = poke_info['stats'][5]['base_stat']
         else:
-            print(f"No info received for {pokemon}.")
+            print(f"No info received for {poke_name}.")
     
     btn_get_info = ttk.Button(frm_input, text='Get Info', command=handle_btn_get_info)
     btn_get_info.grid(row=0, column=2, padx=10, pady=10, sticky=W)
